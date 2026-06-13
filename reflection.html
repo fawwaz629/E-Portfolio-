@@ -13,54 +13,80 @@ body{background:#fafaf8;color:#111;font-family:'Geist',sans-serif;font-weight:30
   display:flex;flex-direction:column;}
 a{color:inherit;text-decoration:none}
 
-.topbar{height:52px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;
-  padding:0 48px;border-bottom:1px solid #e5e5e0;background:#fafaf8;}
+/* TOP BAR — fixed height */
+.topbar{
+  height:52px;flex-shrink:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 48px;border-bottom:1px solid #e5e5e0;background:#fafaf8;
+}
 .topbar-name{font-family:'Instrument Serif',serif;font-size:1rem;letter-spacing:-.01em;}
 .page-indicator{font-family:'Geist Mono',monospace;font-size:11px;color:#bbb;letter-spacing:.1em;}
 
-.progress-bar{height:36px;flex-shrink:0;display:flex;border-bottom:1px solid #e5e5e0;}
-.prog-step{flex:1;display:flex;align-items:center;justify-content:center;
-  font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:#ccc;border-right:1px solid #e5e5e0;text-decoration:none;transition:background .15s;}
+/* PROGRESS — fixed height */
+.progress-bar{
+  height:36px;flex-shrink:0;
+  display:flex;border-bottom:1px solid #e5e5e0;
+}
+.prog-step{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-family:'Geist Mono',monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:#ccc;border-right:1px solid #e5e5e0;
+  text-decoration:none;transition:background .15s;
+}
 .prog-step:last-child{border-right:none}
 .prog-step.active{color:#111;background:#f0f0ec;}
 .prog-step.done{color:#888;}
 
-.bottom-nav{height:56px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;
-  padding:0 48px;border-top:1px solid #e5e5e0;background:#fafaf8;}
-.nav-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;
-  font-size:12px;letter-spacing:.06em;padding:8px 20px;border:1px solid #e5e5e0;
-  background:#fafaf8;text-decoration:none;transition:background .15s,border-color .15s;}
+/* BOTTOM NAV — fixed height */
+.bottom-nav{
+  height:56px;flex-shrink:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 48px;border-top:1px solid #e5e5e0;background:#fafaf8;
+}
+.nav-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;
+  padding:8px 20px;border:1px solid #e5e5e0;background:#fafaf8;
+  text-decoration:none;transition:background .15s,border-color .15s;
+}
 .nav-btn:hover{background:#f0f0ec;border-color:#ccc;}
 .nav-btn.primary{background:#111;color:#fafaf8;border-color:#111;}
 .nav-btn.primary:hover{background:#333;}
 .nav-btn.ghost{color:#ddd;border-color:#f0f0ec;pointer-events:none;}
 
-/* MAIN — centers content horizontally, fills height */
-.main{flex:1;overflow:hidden;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;padding:28px 48px;}
+/* MAIN — fills remaining height, no scroll */
+.main{
+  flex:1;overflow:hidden;
+  padding:32px 48px;
+  display:flex;flex-direction:column;
+}
 
-/* CONTENT WRAPPER — max width, centered */
-.wrap{width:100%;max-width:900px;display:flex;flex-direction:column;height:100%;}
-
+/* TYPOGRAPHY */
 .sec-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#ccc;font-weight:400;margin-bottom:8px;font-family:'Geist Mono',monospace;flex-shrink:0;}
+  color:#ccc;font-weight:400;margin-bottom:10px;font-family:'Geist Mono',monospace;flex-shrink:0;}
 .page-title{font-family:'Instrument Serif',serif;
-  font-size:clamp(1.6rem,3vh,2.6rem);line-height:1;letter-spacing:-.02em;
-  color:#111;margin-bottom:14px;flex-shrink:0;}
+  font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1;letter-spacing:-.02em;
+  color:#111;margin-bottom:16px;flex-shrink:0;}
 .page-title em{font-style:italic;color:#888;}
 .prose{font-size:13px;line-height:1.7;color:#555;margin-bottom:10px;font-weight:300;}
 .prose strong{font-weight:500;color:#333;}
 
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;flex:1;min-height:0;}
-.one-aside{display:grid;grid-template-columns:1fr 240px;gap:32px;flex:1;min-height:0;align-items:start;}
+/* CONTENT AREA — fills remaining flex space */
+.content{flex:1;display:flex;flex-direction:column;min-height:0;}
+
+/* TWO COLUMNS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;min-height:0;}
+.one-aside{display:grid;grid-template-columns:1fr 260px;gap:36px;flex:1;min-height:0;align-items:start;}
 .col{display:flex;flex-direction:column;min-height:0;overflow:hidden;}
 
+/* ASIDE STACK */
 .aside-stack{display:flex;flex-direction:column;gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;}
 .aside-cell{background:#fafaf8;padding:10px 14px;}
 .aside-cell-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#bbb;margin-bottom:4px;font-family:'Geist Mono',monospace;}
 .aside-cell p{font-size:12px;color:#555;line-height:1.55;font-weight:300;}
 
+/* SKILL LINES */
 .skill-group-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;
   text-transform:uppercase;color:#bbb;border-bottom:1px solid #e5e5e0;
   padding-bottom:5px;margin-bottom:8px;}
@@ -71,7 +97,8 @@ a{color:inherit;text-decoration:none}
 .skill-lvl{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;color:#ccc;white-space:nowrap;}
 .skill-lvl.good{color:#111;}.skill-lvl.mid{color:#888;}
 
-.gap-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:10px;}
+/* GAP TABLE */
+.gap-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:12px;flex-shrink:0;}
 .gap-table th{text-align:left;padding:5px 10px;font-family:'Geist Mono',monospace;
   font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;
   border-bottom:1px solid #e5e5e0;background:#f5f5f2;}
@@ -81,61 +108,61 @@ a{color:inherit;text-decoration:none}
 .pill-mid{background:#f0f0ec;color:#666;border:1px solid #e5e5e0;}
 .pill-dev{background:#fdf3f2;color:#c0392b;border:1px solid #f5d5d2;}
 
+/* TIMELINE */
 .plan-wrap{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
 .plan-layout{display:grid;grid-template-columns:100px 1fr;}
 .plan-row{display:contents;}
-.plan-row > *{padding:8px 0;border-bottom:.5px solid #f0f0ec;}
+.plan-row > *{padding:9px 0;border-bottom:.5px solid #f0f0ec;}
 .plan-row:last-child > *{border-bottom:none}
-.plan-when{font-family:'Geist Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.06em;padding-right:16px;padding-top:10px;}
+.plan-when{font-family:'Geist Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.06em;padding-right:16px;padding-top:11px;}
 .plan-when.done{color:#111;font-weight:400;}
 .plan-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px;}
-.plan-desc{font-size:11.5px;color:#777;line-height:1.5;font-weight:300;}
-.plan-tags{margin-top:4px;display:flex;flex-wrap:wrap;gap:3px;}
+.plan-desc{font-size:11.5px;color:#777;line-height:1.55;font-weight:300;}
+.plan-tags{margin-top:5px;display:flex;flex-wrap:wrap;gap:3px;}
 .ptag{font-size:9px;font-family:'Geist Mono',monospace;padding:1px 6px;background:#f0f0ec;color:#888;border-radius:2px;}
 
+/* CERT STRIP */
 .cert-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  background:#e5e5e0;border:1px solid #e5e5e0;margin-top:14px;flex-shrink:0;}
-.cert-box{background:#fafaf8;padding:10px 12px;}
+  background:#e5e5e0;border:1px solid #e5e5e0;margin-top:16px;flex-shrink:0;}
+.cert-box{background:#fafaf8;padding:12px 14px;}
 .cert-when{font-family:'Geist Mono',monospace;font-size:9px;color:#bbb;letter-spacing:.08em;display:block;margin-bottom:4px;}
 .cert-title{font-size:12px;font-weight:500;color:#111;}
-.cert-sub{font-size:10px;color:#aaa;margin-top:2px;font-weight:300;}
+.cert-sub{font-size:11px;color:#aaa;margin-top:2px;font-weight:300;}
 
-/* EVIDENCE — 2 col: list left, big image right */
-.ev-layout{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;flex:1;min-height:0;}
-.ev-list{background:#fafaf8;overflow-y:auto;padding:0;}
-.ev-img{background:#f0eeeb;overflow:hidden;}
-.ev-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;}
-.ev-item{padding:12px 16px;border-bottom:.5px solid #f0f0ec;cursor:pointer;transition:background .15s;}
+/* EVIDENCE */
+.ev-scroll{flex:1;min-height:0;overflow-y:auto;}
+.ev-item{padding:14px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:30px 1fr;gap:14px;}
 .ev-item:last-child{border-bottom:none}
-.ev-item:hover,.ev-item.active{background:#f5f5f2;}
-.ev-num{font-family:'Instrument Serif',serif;font-size:1.2rem;color:#e0e0db;line-height:1;display:inline;margin-right:8px;}
+.ev-n{font-family:'Instrument Serif',serif;font-size:1.6rem;color:#e5e5e0;line-height:1;padding-top:2px;}
 .ev-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px;}
-.ev-desc{font-size:11.5px;color:#777;line-height:1.55;font-weight:300;margin-bottom:5px;}
+.ev-desc{font-size:12px;color:#777;line-height:1.6;margin-bottom:6px;font-weight:300;}
 
 /* REFLECTION */
-.company-strip{display:flex;align-items:center;gap:14px;padding:10px 16px;
-  background:#111;color:#fafaf8;margin-bottom:14px;flex-shrink:0;}
+.company-strip{display:flex;align-items:center;gap:14px;padding:12px 16px;
+  background:#111;color:#fafaf8;margin-bottom:16px;}
 .co-box{width:34px;height:34px;background:#2a2a2a;display:flex;align-items:center;
   justify-content:center;font-family:'Instrument Serif',serif;font-size:.9rem;flex-shrink:0;}
-.co-name{font-size:13px;font-weight:500;margin-bottom:1px;}
+.co-name{font-size:13px;font-weight:500;margin-bottom:2px;}
 .co-sub{font-size:11px;color:#777;font-weight:300;}
-.qa-scroll{overflow-y:auto;flex:1;min-height:0;}
-.qa{padding:10px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:150px 1fr;gap:16px;}
+.qa-scroll{flex:1;min-height:0;overflow-y:auto;}
+.qa{padding:12px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:160px 1fr;gap:20px;}
 .qa:last-of-type{border-bottom:none}
-.qa-q{font-size:11px;color:#bbb;line-height:1.5;padding-top:2px;font-style:italic;}
-.qa-a{font-size:12px;color:#444;line-height:1.7;font-weight:300;}
-.swot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;flex-shrink:0;}
-.swot-cell{background:#fafaf8;padding:10px 14px;}
-.swot-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #f0f0ec;padding-bottom:5px;margin-bottom:8px;}
+.qa-q{font-size:11px;color:#bbb;line-height:1.55;padding-top:2px;font-style:italic;}
+.qa-a{font-size:12.5px;color:#444;line-height:1.75;font-weight:300;}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e0;
+  border:1px solid #e5e5e0;margin-top:16px;flex-shrink:0;}
+.swot-cell{background:#fafaf8;padding:12px 16px;}
+.swot-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;border-bottom:1px solid #f0f0ec;padding-bottom:5px;margin-bottom:8px;}
 .swot-cell:nth-child(1) .swot-label{color:#111;}
 .swot-cell:nth-child(2) .swot-label{color:#c0392b;}
 .swot-cell:nth-child(3) .swot-label{color:#2563ab;}
 .swot-cell:nth-child(4) .swot-label{color:#92621a;}
 .swot-list{list-style:none;}
-.swot-list li{font-size:11.5px;color:#555;padding:2px 0 2px 11px;position:relative;font-weight:300;line-height:1.45;}
+.swot-list li{font-size:12px;color:#555;padding:2px 0 2px 12px;position:relative;font-weight:300;line-height:1.45;}
 .swot-list li::before{content:'–';position:absolute;left:0;color:#ddd;}
-.closing{margin-top:10px;padding:12px 18px;background:#f5f5f2;flex-shrink:0;}
-.closing p{font-family:'Instrument Serif',serif;font-size:.9rem;line-height:1.6;color:#444;font-style:italic;}
+.closing{margin-top:14px;padding:14px 20px;background:#f5f5f2;flex-shrink:0;}
+.closing p{font-family:'Instrument Serif',serif;font-size:.95rem;line-height:1.65;color:#444;font-style:italic;}
 </style>
 
 </head>
@@ -145,33 +172,33 @@ a{color:inherit;text-decoration:none}
   <span class="page-indicator">CSA30203 &nbsp;·&nbsp; 5 / 5</span>
 </div>
 <div class="progress-bar"><a class="prog-step done" href="index.html">01 Career</a><a class="prog-step done" href="skills.html">02 Skills</a><a class="prog-step done" href="plan.html">03 Plan</a><a class="prog-step done" href="evidence.html">04 Evidence</a><a class="prog-step active" href="reflection.html">05 Reflection</a></div>
-<div class="main"><div class="wrap">
+<div class="main">
 <p class="sec-label">05 — Personal Reflection</p>
 <h1 class="page-title">Dream Company &amp;<br><em>Reflection</em></h1>
 <div class="company-strip">
   <div class="co-box">LG</div>
   <div><div class="co-name">LGMS — LE Global Services Sdn Bhd</div><div class="co-sub">Malaysia's leading cybersecurity firm. Penetration testing, digital forensics, red teaming, security consulting.</div></div>
 </div>
-<div class="two-col" style="flex:1;min-height:0;">
+<div class="two-col content">
   <div class="qa-scroll">
-    <div class="qa"><div class="qa-q">Why do you want to work for LGMS?</div><div class="qa-a">LGMS conducts the most technically rigorous cybersecurity work in Malaysia — for banks, government, and enterprises. My degree is in Computer Network Security. LGMS is where that specialisation belongs, offering proximity to senior practitioners and direct impact on Malaysia's digital security infrastructure.</div></div>
-    <div class="qa"><div class="qa-q">What value can you bring?</div><div class="qa-a">I can build ML-powered security tooling — uncommon at fresh graduate level. PhishShield is a deployed Flask application with a trained Random Forest classifier and live Chrome extension, built without external guidance. I can contribute to AI-assisted threat detection from day one.</div></div>
-    <div class="qa"><div class="qa-q">Why should we hire you?</div><div class="qa-a">My CGPA is 2.82. What I offer is a working, independently built security application. PhishShield went from raw dataset to deployed system. The code is publicly available. I ask that it be considered alongside the transcript.</div></div>
-    <div class="qa"><div class="qa-q">What skills make you suitable?</div><div class="qa-a">Python, Scikit-learn, Flask for ML deployment; Java, SQL, HTML, CSS for full-stack; Chrome Extension API; understanding of phishing attack mechanics and URL classification. Bilingual in Malay and English for client-facing work in Malaysia.</div></div>
-    <div class="qa"><div class="qa-q">Why would a company choose to hire you?</div><div class="qa-a">Three things: a working security product already delivered; technical breadth across the full stack; and discipline built through professional experience in hospitality and event management under real pressure.</div></div>
+    <div class="qa"><div class="qa-q">Why do you want to work for LGMS?</div><div class="qa-a">LGMS conducts the most technically rigorous cybersecurity work in Malaysia — for banks, government, and enterprises. My degree is in Computer Network Security. LGMS is where that specialisation belongs, offering proximity to senior practitioners and direct impact on Malaysia's digital security.</div></div>
+    <div class="qa"><div class="qa-q">What value can you bring?</div><div class="qa-a">I can build ML-powered security tooling — uncommon at fresh graduate level. PhishShield is a deployed Flask application with a trained Random Forest classifier and live Chrome extension. I can contribute to AI-assisted threat detection from day one.</div></div>
+    <div class="qa"><div class="qa-q">Why should we hire you?</div><div class="qa-a">My CGPA is 2.82. I acknowledge that. What I offer is a working, independently built security application. PhishShield went from dataset to deployed system without guidance. The code is publicly available. I ask that it be considered alongside the transcript.</div></div>
+    <div class="qa"><div class="qa-q">What skills make you suitable?</div><div class="qa-a">Python, Scikit-learn, Flask for ML deployment; Java, SQL, HTML, CSS for full-stack; Chrome Extension API; understanding of phishing attack mechanics and URL classification. Bilingual in Malay and English for client-facing work.</div></div>
+    <div class="qa"><div class="qa-q">Why would a company choose to hire you?</div><div class="qa-a">Three things reduce hiring risk: a working security product already delivered; technical breadth across the full stack; and discipline built through professional experience in hospitality and event management under real pressure.</div></div>
   </div>
-  <div style="display:flex;flex-direction:column;gap:0;min-height:0;">
+  <div style="display:flex;flex-direction:column;min-height:0;">
     <div class="swot">
       <div class="swot-cell"><div class="swot-label">Strengths</div><ul class="swot-list"><li>Deployed PhishShield independently</li><li>Proficient Python, Flask, Scikit-learn</li><li>Three completed projects</li><li>Integrity, emotional intelligence</li><li>Bilingual: Malay + English</li></ul></div>
       <div class="swot-cell"><div class="swot-label">Weaknesses</div><ul class="swot-list"><li>No certifications yet</li><li>CGPA 2.82</li><li>Limited professional IT experience</li><li>Networking tools at beginner level</li></ul></div>
-      <div class="swot-cell"><div class="swot-label">Opportunities</div><ul class="swot-list"><li>AI security tooling in high demand</li><li>Malaysia cybersecurity sector growing</li><li>Security+ attainable in 6 months</li><li>Open-source PhishShield raises visibility</li></ul></div>
+      <div class="swot-cell"><div class="swot-label">Opportunities</div><ul class="swot-list"><li>AI security tooling in high demand</li><li>Malaysia cybersecurity sector growing</li><li>Security+ in 6 months</li><li>Open-source PhishShield</li></ul></div>
       <div class="swot-cell"><div class="swot-label">Threats</div><ul class="swot-list"><li>Competitive graduate market</li><li>Phishing techniques evolve fast</li><li>Sustained upskilling required</li><li>CGPA may trigger HR filtering</li></ul></div>
     </div>
     <div class="closing">
-      <p>"There are gaps in my profile that I have listed honestly in this portfolio. What I can say with equal honesty is that every project I have started, I have finished — and PhishShield is the clearest evidence of that."</p>
+      <p>"I built a live ML security system from a hotel worker's starting point. PhishShield is the most accurate measure of what I can do. I intend to build on it."</p>
     </div>
   </div>
-</div></div></div>
+</div></div>
 <div class="bottom-nav">
   <a class="nav-btn" href="evidence.html">← 04 Evidence</a>
   <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#ccc;">5 / 5</span>
