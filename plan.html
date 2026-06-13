@@ -8,154 +8,161 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{font-size:16px}
-body{background:#fafaf8;color:#111;font-family:'Geist',sans-serif;font-weight:300;min-height:100vh;display:flex;flex-direction:column;}
+html,body{height:100%;overflow:hidden;}
+body{background:#fafaf8;color:#111;font-family:'Geist',sans-serif;font-weight:300;
+  display:flex;flex-direction:column;}
 a{color:inherit;text-decoration:none}
 
-/* TOP BAR */
+/* TOP BAR — fixed height */
 .topbar{
+  height:52px;flex-shrink:0;
   display:flex;justify-content:space-between;align-items:center;
-  padding:18px 48px;border-bottom:1px solid #e5e5e0;
-  background:#fafaf8;
-  flex-shrink:0;
+  padding:0 48px;border-bottom:1px solid #e5e5e0;background:#fafaf8;
 }
-.topbar-name{font-family:'Instrument Serif',serif;font-size:1rem;letter-spacing:-.01em;color:#111;}
+.topbar-name{font-family:'Instrument Serif',serif;font-size:1rem;letter-spacing:-.01em;}
 .page-indicator{font-family:'Geist Mono',monospace;font-size:11px;color:#bbb;letter-spacing:.1em;}
 
-/* PROGRESS */
+/* PROGRESS — fixed height */
 .progress-bar{
-  display:flex;border-bottom:1px solid #e5e5e0;flex-shrink:0;
+  height:36px;flex-shrink:0;
+  display:flex;border-bottom:1px solid #e5e5e0;
 }
 .prog-step{
-  flex:1;padding:10px 0;text-align:center;
+  flex:1;display:flex;align-items:center;justify-content:center;
   font-family:'Geist Mono',monospace;font-size:10px;
   letter-spacing:.1em;text-transform:uppercase;
   color:#ccc;border-right:1px solid #e5e5e0;
-  transition:background .2s;
-  text-decoration:none;
+  text-decoration:none;transition:background .15s;
 }
 .prog-step:last-child{border-right:none}
 .prog-step.active{color:#111;background:#f0f0ec;}
 .prog-step.done{color:#888;}
 
-/* MAIN CONTENT */
-.main{flex:1;padding:52px 48px 40px;max-width:860px;width:100%;}
-
-/* BOTTOM NAV */
+/* BOTTOM NAV — fixed height */
 .bottom-nav{
+  height:56px;flex-shrink:0;
   display:flex;justify-content:space-between;align-items:center;
-  padding:20px 48px;border-top:1px solid #e5e5e0;
-  background:#fafaf8;flex-shrink:0;
+  padding:0 48px;border-top:1px solid #e5e5e0;background:#fafaf8;
 }
 .nav-btn{
   display:inline-flex;align-items:center;gap:8px;
-  font-family:'Geist Mono',monospace;font-size:12px;
-  letter-spacing:.06em;color:#111;
-  padding:10px 20px;border:1px solid #e5e5e0;
-  background:#fafaf8;cursor:pointer;
-  transition:background .15s,border-color .15s;
-  text-decoration:none;
+  font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;
+  padding:8px 20px;border:1px solid #e5e5e0;background:#fafaf8;
+  text-decoration:none;transition:background .15s,border-color .15s;
 }
 .nav-btn:hover{background:#f0f0ec;border-color:#ccc;}
 .nav-btn.primary{background:#111;color:#fafaf8;border-color:#111;}
-.nav-btn.primary:hover{background:#333;border-color:#333;}
-.nav-btn.ghost{color:#ccc;border-color:#f0f0ec;cursor:default;pointer-events:none;}
+.nav-btn.primary:hover{background:#333;}
+.nav-btn.ghost{color:#ddd;border-color:#f0f0ec;pointer-events:none;}
+
+/* MAIN — fills remaining height, no scroll */
+.main{
+  flex:1;overflow:hidden;
+  padding:32px 48px;
+  display:flex;flex-direction:column;
+}
 
 /* TYPOGRAPHY */
-.sec-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#ccc;font-weight:400;margin-bottom:32px;font-family:'Geist Mono',monospace;}
-.page-title{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3.2rem);line-height:.98;letter-spacing:-.02em;color:#111;margin-bottom:24px;}
+.sec-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#ccc;font-weight:400;margin-bottom:10px;font-family:'Geist Mono',monospace;flex-shrink:0;}
+.page-title{font-family:'Instrument Serif',serif;
+  font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1;letter-spacing:-.02em;
+  color:#111;margin-bottom:16px;flex-shrink:0;}
 .page-title em{font-style:italic;color:#888;}
-.prose{font-size:14px;line-height:1.82;color:#555;margin-bottom:16px;font-weight:300;}
+.prose{font-size:13px;line-height:1.7;color:#555;margin-bottom:10px;font-weight:300;}
 .prose strong{font-weight:500;color:#333;}
-h3.sub{font-family:'Instrument Serif',serif;font-size:1.3rem;font-weight:400;letter-spacing:-.01em;color:#111;margin:32px 0 16px;}
+
+/* CONTENT AREA — fills remaining flex space */
+.content{flex:1;display:flex;flex-direction:column;min-height:0;}
+
+/* TWO COLUMNS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;min-height:0;}
+.one-aside{display:grid;grid-template-columns:1fr 260px;gap:36px;flex:1;min-height:0;align-items:start;}
+.col{display:flex;flex-direction:column;min-height:0;overflow:hidden;}
 
 /* ASIDE STACK */
 .aside-stack{display:flex;flex-direction:column;gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;}
-.aside-cell{background:#fafaf8;padding:16px 20px;}
-.aside-cell-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#bbb;margin-bottom:6px;font-weight:400;font-family:'Geist Mono',monospace;}
-.aside-cell p{font-size:13px;color:#555;line-height:1.65;font-weight:300;}
-
-/* TWO COL */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
-.one-aside{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+.aside-cell{background:#fafaf8;padding:10px 14px;}
+.aside-cell-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#bbb;margin-bottom:4px;font-family:'Geist Mono',monospace;}
+.aside-cell p{font-size:12px;color:#555;line-height:1.55;font-weight:300;}
 
 /* SKILL LINES */
-.skill-group-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#bbb;border-bottom:1px solid #e5e5e0;padding-bottom:6px;margin-bottom:12px;font-weight:400;}
-.skill-line{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #f2f2ee;gap:12px;}
-.skill-line:last-child{border-bottom:none}
-.skill-name-txt{font-size:13px;color:#444;font-weight:400;}
-.skill-lvl{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#ccc;white-space:nowrap;flex-shrink:0;}
+.skill-group-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:#bbb;border-bottom:1px solid #e5e5e0;
+  padding-bottom:5px;margin-bottom:8px;}
+.skill-line{display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 0;border-bottom:.5px solid #f2f2ee;gap:8px;}
+.skill-line:last-of-type{border-bottom:none}
+.skill-name-txt{font-size:12px;color:#444;font-weight:400;}
+.skill-lvl{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;color:#ccc;white-space:nowrap;}
 .skill-lvl.good{color:#111;}.skill-lvl.mid{color:#888;}
-.gap-note{margin-top:24px;padding:14px 18px;background:#f5f5f2;border-left:2px solid #ddd;}
-.gap-note p{font-size:13px;color:#666;line-height:1.65;font-weight:300;}
-.gap-note strong{color:#333;font-weight:500;}
 
-/* TABLE */
-.gap-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:24px;}
-.gap-table th{text-align:left;padding:8px 12px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;border-bottom:1px solid #e5e5e0;background:#f5f5f2;}
-.gap-table td{padding:9px 12px;border-bottom:.5px solid #f0f0ec;color:#555;vertical-align:top;font-weight:300;}
-.gap-table tr:hover td{background:#f9f9f7;}
-.pill{display:inline-block;font-family:'Geist Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+/* GAP TABLE */
+.gap-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:12px;flex-shrink:0;}
+.gap-table th{text-align:left;padding:5px 10px;font-family:'Geist Mono',monospace;
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;
+  border-bottom:1px solid #e5e5e0;background:#f5f5f2;}
+.gap-table td{padding:5px 10px;border-bottom:.5px solid #f0f0ec;color:#555;vertical-align:top;font-weight:300;}
+.pill{display:inline-block;font-family:'Geist Mono',monospace;font-size:9px;padding:1px 7px;border-radius:2px;}
 .pill-strong{background:#111;color:#fafaf8;}
 .pill-mid{background:#f0f0ec;color:#666;border:1px solid #e5e5e0;}
 .pill-dev{background:#fdf3f2;color:#c0392b;border:1px solid #f5d5d2;}
 
 /* TIMELINE */
-.plan-layout{display:grid;grid-template-columns:110px 1fr;gap:0;}
+.plan-wrap{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
+.plan-layout{display:grid;grid-template-columns:100px 1fr;}
 .plan-row{display:contents;}
-.plan-row > *{padding:16px 0;border-bottom:.5px solid #f0f0ec;}
+.plan-row > *{padding:9px 0;border-bottom:.5px solid #f0f0ec;}
 .plan-row:last-child > *{border-bottom:none}
-.plan-when{font-family:'Geist Mono',monospace;font-size:11px;color:#ccc;letter-spacing:.06em;padding-right:20px;padding-top:18px;}
+.plan-when{font-family:'Geist Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.06em;padding-right:16px;padding-top:11px;}
 .plan-when.done{color:#111;font-weight:400;}
-.plan-title{font-size:14px;font-weight:500;color:#111;margin-bottom:4px;}
-.plan-desc{font-size:13px;color:#777;line-height:1.65;font-weight:300;}
-.plan-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
-.ptag{font-size:10px;font-family:'Geist Mono',monospace;padding:2px 8px;background:#f0f0ec;color:#888;border-radius:2px;}
+.plan-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px;}
+.plan-desc{font-size:11.5px;color:#777;line-height:1.55;font-weight:300;}
+.plan-tags{margin-top:5px;display:flex;flex-wrap:wrap;gap:3px;}
+.ptag{font-size:9px;font-family:'Geist Mono',monospace;padding:1px 6px;background:#f0f0ec;color:#888;border-radius:2px;}
 
 /* CERT STRIP */
-.cert-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;margin-top:36px;}
-.cert-box{background:#fafaf8;padding:16px;}
-.cert-when{font-family:'Geist Mono',monospace;font-size:10px;color:#bbb;letter-spacing:.08em;display:block;margin-bottom:5px;}
-.cert-title{font-size:13px;font-weight:500;color:#111;}
+.cert-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:#e5e5e0;border:1px solid #e5e5e0;margin-top:16px;flex-shrink:0;}
+.cert-box{background:#fafaf8;padding:12px 14px;}
+.cert-when{font-family:'Geist Mono',monospace;font-size:9px;color:#bbb;letter-spacing:.08em;display:block;margin-bottom:4px;}
+.cert-title{font-size:12px;font-weight:500;color:#111;}
 .cert-sub{font-size:11px;color:#aaa;margin-top:2px;font-weight:300;}
 
 /* EVIDENCE */
-.ev-item{padding:24px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:36px 1fr;gap:18px;align-items:start;}
+.ev-scroll{flex:1;min-height:0;overflow-y:auto;}
+.ev-item{padding:14px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:30px 1fr;gap:14px;}
 .ev-item:last-child{border-bottom:none}
-.ev-n{font-family:'Instrument Serif',serif;font-size:2rem;color:#e5e5e0;line-height:1;padding-top:4px;}
-.ev-title{font-size:15px;font-weight:500;color:#111;margin-bottom:4px;}
-.ev-desc{font-size:13px;color:#777;line-height:1.7;margin-bottom:8px;font-weight:300;}
+.ev-n{font-family:'Instrument Serif',serif;font-size:1.6rem;color:#e5e5e0;line-height:1;padding-top:2px;}
+.ev-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px;}
+.ev-desc{font-size:12px;color:#777;line-height:1.6;margin-bottom:6px;font-weight:300;}
 
 /* REFLECTION */
-.company-strip{display:flex;align-items:center;gap:16px;padding:16px 20px;background:#111;color:#fafaf8;margin-bottom:36px;max-width:520px;}
-.co-box{width:38px;height:38px;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:.95rem;flex-shrink:0;}
-.co-name{font-size:14px;font-weight:500;margin-bottom:2px;}
+.company-strip{display:flex;align-items:center;gap:14px;padding:12px 16px;
+  background:#111;color:#fafaf8;margin-bottom:16px;}
+.co-box{width:34px;height:34px;background:#2a2a2a;display:flex;align-items:center;
+  justify-content:center;font-family:'Instrument Serif',serif;font-size:.9rem;flex-shrink:0;}
+.co-name{font-size:13px;font-weight:500;margin-bottom:2px;}
 .co-sub{font-size:11px;color:#777;font-weight:300;}
-.qa{padding:22px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:190px 1fr;gap:28px;}
+.qa-scroll{flex:1;min-height:0;overflow-y:auto;}
+.qa{padding:12px 0;border-bottom:.5px solid #f0f0ec;display:grid;grid-template-columns:160px 1fr;gap:20px;}
 .qa:last-of-type{border-bottom:none}
-.qa-q{font-size:12px;color:#bbb;line-height:1.6;padding-top:2px;font-style:italic;font-weight:300;}
-.qa-a{font-size:14px;color:#444;line-height:1.82;font-weight:300;}
-.swot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e0;border:1px solid #e5e5e0;margin-top:36px;}
-.swot-cell{background:#fafaf8;padding:18px 20px;}
-.swot-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #f0f0ec;padding-bottom:6px;margin-bottom:10px;font-weight:400;}
+.qa-q{font-size:11px;color:#bbb;line-height:1.55;padding-top:2px;font-style:italic;}
+.qa-a{font-size:12.5px;color:#444;line-height:1.75;font-weight:300;}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e0;
+  border:1px solid #e5e5e0;margin-top:16px;flex-shrink:0;}
+.swot-cell{background:#fafaf8;padding:12px 16px;}
+.swot-label{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;border-bottom:1px solid #f0f0ec;padding-bottom:5px;margin-bottom:8px;}
 .swot-cell:nth-child(1) .swot-label{color:#111;}
 .swot-cell:nth-child(2) .swot-label{color:#c0392b;}
 .swot-cell:nth-child(3) .swot-label{color:#2563ab;}
 .swot-cell:nth-child(4) .swot-label{color:#92621a;}
 .swot-list{list-style:none;}
-.swot-list li{font-size:13px;color:#555;padding:3px 0 3px 12px;position:relative;font-weight:300;line-height:1.55;}
+.swot-list li{font-size:12px;color:#555;padding:2px 0 2px 12px;position:relative;font-weight:300;line-height:1.45;}
 .swot-list li::before{content:'–';position:absolute;left:0;color:#ddd;}
-.closing{margin-top:36px;padding:24px 28px;background:#f5f5f2;max-width:600px;}
-.closing p{font-family:'Instrument Serif',serif;font-size:1.05rem;line-height:1.75;color:#444;font-style:italic;}
-
-@media(max-width:680px){
-  .topbar,.bottom-nav,.main{padding-left:20px;padding-right:20px;}
-  .two-col,.one-aside,.qa{grid-template-columns:1fr;}
-  .swot{grid-template-columns:1fr;}
-  .cert-strip{grid-template-columns:1fr 1fr;}
-  .prog-step span.label{display:none;}
-  .plan-layout{grid-template-columns:80px 1fr;}
-}
+.closing{margin-top:14px;padding:14px 20px;background:#f5f5f2;flex-shrink:0;}
+.closing p{font-family:'Instrument Serif',serif;font-size:.95rem;line-height:1.65;color:#444;font-style:italic;}
 </style>
 
 </head>
@@ -166,66 +173,45 @@ h3.sub{font-family:'Instrument Serif',serif;font-size:1.3rem;font-weight:400;let
 </div>
 <div class="progress-bar"><a class="prog-step done" href="index.html">01 Career</a><a class="prog-step done" href="skills.html">02 Skills</a><a class="prog-step active" href="plan.html">03 Plan</a><a class="prog-step " href="evidence.html">04 Evidence</a><a class="prog-step " href="reflection.html">05 Reflection</a></div>
 <div class="main">
-
 <p class="sec-label">03 — Career Development Plan</p>
 <h1 class="page-title">The Roadmap</h1>
-<div class="plan-layout">
-  <div class="plan-row">
-    <div class="plan-when done">Completed</div>
-    <div>
-      <div class="plan-title">PhishShield — Degree Final Year Project</div>
-      <div class="plan-desc">End-to-end ML phishing detection system. Dataset curation → feature engineering → Random Forest classifier → Flask web app with real-time URL classification and risk scoring → Chrome extension for live blocking. Built and deployed independently.</div>
-      <div class="plan-tags"><span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">Flask</span><span class="ptag">Random Forest</span><span class="ptag">Chrome Extension</span><span class="ptag">GitHub</span></div>
+<div class="content plan-wrap">
+  <div class="plan-layout">
+    <div class="plan-row">
+      <div class="plan-when done">Done</div>
+      <div><div class="plan-title">PhishShield — Degree FYP</div><div class="plan-desc">End-to-end ML phishing detection. Random Forest classifier → Flask web app with real-time URL classification → Chrome extension. Built independently.</div><div class="plan-tags"><span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">Flask</span><span class="ptag">Chrome Extension</span></div></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-when done">Done</div>
+      <div><div class="plan-title">Banking System + Online Cake Shop — Diploma FYP</div><div class="plan-desc">Full banking system (Java/SQL) and e-commerce system as Diploma FYP at Politeknik Sultan Mizan Zainal Abidin. HPNM 3.21.</div><div class="plan-tags"><span class="ptag">Java</span><span class="ptag">SQL</span><span class="ptag">Database Design</span></div></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-when">6 months</div>
+      <div><div class="plan-title">CompTIA Security+ · Linux daily · PhishShield on GitHub</div><div class="plan-desc">Sit Security+. Transition to Ubuntu. Weekly Wireshark labs. Publish PhishShield as documented open-source repo.</div></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-when">1 year</div>
+      <div><div class="plan-title">AWS Cloud Practitioner · First industry role</div><div class="plan-desc">Obtain AWS Cloud Practitioner. Apply for Junior Security Developer or ML Engineer at LGMS, Securemetric, or CyberSecurity Malaysia.</div></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-when">2 years</div>
+      <div><div class="plan-title">Security Developer at LGMS</div><div class="plan-desc">Contributing to threat detection tooling professionally. Pursuing CCNA or CEH. Presenting at HITB KL or SANS Malaysia.</div></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-when">5 years</div>
+      <div><div class="plan-title">ML Security Engineer / Team Lead</div><div class="plan-desc">Leading AI-driven threat detection platforms. Holding CISSP or AWS Security Specialty. Regional conference speaker.</div></div>
     </div>
   </div>
-  <div class="plan-row">
-    <div class="plan-when done">Completed</div>
-    <div>
-      <div class="plan-title">Banking System + Online Cake Shop — Diploma FYP</div>
-      <div class="plan-desc">Full banking system with UI and database (Java/SQL). Online Cake Shop as Diploma FYP at Politeknik Sultan Mizan Zainal Abidin — HPNM 3.21. Established the full-stack foundations that underpin current security application work.</div>
-      <div class="plan-tags"><span class="ptag">Java</span><span class="ptag">SQL</span><span class="ptag">Database Design</span></div>
-    </div>
+  <div class="cert-strip">
+    <div class="cert-box"><span class="cert-when">6 months</span><div class="cert-title">CompTIA Security+</div><div class="cert-sub">Foundation</div></div>
+    <div class="cert-box"><span class="cert-when">12 months</span><div class="cert-title">AWS Cloud Practitioner</div><div class="cert-sub">Cloud deployment</div></div>
+    <div class="cert-box"><span class="cert-when">2–3 years</span><div class="cert-title">CCNA / CEH</div><div class="cert-sub">Network + ethical hacking</div></div>
+    <div class="cert-box"><span class="cert-when">5 years</span><div class="cert-title">CISSP</div><div class="cert-sub">Senior practitioner</div></div>
   </div>
-  <div class="plan-row">
-    <div class="plan-when">6 months</div>
-    <div>
-      <div class="plan-title">CompTIA Security+ · Linux daily use · PhishShield on GitHub</div>
-      <div class="plan-desc">Study and sit Security+. Transition to Ubuntu as primary OS. Weekly Wireshark labs. Publish PhishShield as a properly documented open-source repository with full README and demo screenshots.</div>
-    </div>
-  </div>
-  <div class="plan-row">
-    <div class="plan-when">1 year</div>
-    <div>
-      <div class="plan-title">AWS Cloud Practitioner · First industry role</div>
-      <div class="plan-desc">Obtain AWS Cloud Practitioner certification. Apply for Junior Security Developer or Junior ML Engineer positions at LGMS, Securemetric, or CyberSecurity Malaysia. Aim to have two additional portfolio projects completed.</div>
-    </div>
-  </div>
-  <div class="plan-row">
-    <div class="plan-when">2 years</div>
-    <div>
-      <div class="plan-title">Security Software Developer — LGMS or equivalent</div>
-      <div class="plan-desc">Contributing to threat detection tooling professionally. Pursuing CCNA or CEH. Aiming to present at a local security event such as HITB KL or SANS Malaysia.</div>
-    </div>
-  </div>
-  <div class="plan-row">
-    <div class="plan-when">5 years</div>
-    <div>
-      <div class="plan-title">ML Security Engineer or Security Team Lead</div>
-      <div class="plan-desc">Leading a team building AI-driven threat detection platforms. Holding CISSP or AWS Security Specialty. Contributing to the regional cybersecurity community as a conference speaker.</div>
-    </div>
-  </div>
-</div>
-<div class="cert-strip">
-  <div class="cert-box"><span class="cert-when">6 months</span><div class="cert-title">CompTIA Security+</div><div class="cert-sub">Security foundation</div></div>
-  <div class="cert-box"><span class="cert-when">12 months</span><div class="cert-title">AWS Cloud Practitioner</div><div class="cert-sub">Cloud deployment</div></div>
-  <div class="cert-box"><span class="cert-when">2–3 years</span><div class="cert-title">CCNA / CEH</div><div class="cert-sub">Network &amp; ethical hacking</div></div>
-  <div class="cert-box"><span class="cert-when">5 years</span><div class="cert-title">CISSP</div><div class="cert-sub">Senior practitioner</div></div>
-</div>
-
-</div>
+</div></div>
 <div class="bottom-nav">
   <a class="nav-btn" href="skills.html">← 02 Skills</a>
-  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#ccc;letter-spacing:.08em;">3 / 5</span>
+  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#ccc;">3 / 5</span>
   <a class="nav-btn primary" href="evidence.html">04 Evidence →</a>
 </div>
 </body>
